@@ -1,0 +1,13 @@
+{
+  "name": "node-express-jwt-auth",
+  "version": "1.0.0",
+  "main": "app.js",
+  "repository": "git@github.com:409915016/node-express-jwt-auth.git",
+  "author": "mather <misaka@misaka.im>",
+  "license": "MIT",
+  "dependencies": {
+    "ejs": "^3.1.5",
+    "express": "^4.17.1",
+    "mongoose": "^5.10.6"
+  }
+}
