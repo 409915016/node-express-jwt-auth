@@ -1,6 +1,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const authRoutes = require('./routes/authRoutes')
+require('dotenv').config()
 
 const app = express();
 
@@ -12,7 +13,7 @@ app.use(express.json())
 app.set('view engine', 'ejs');
 
 // database connection
-const dbURI = 'mongodb+srv://mather:jm409915016@mongodb.jolrq.azure.mongodb.net/mather?retryWrites=true&w=majority';
+const dbURI = `mongodb+srv://mather:${process.env.DB_PASS}@mongodb.jolrq.azure.mongodb.net/${process.env.DB_NAME}?retryWrites=true&w=majority`;
 mongoose.connect(dbURI, { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex:true })
   .then((result) => app.listen(3000))
   .catch((err) => console.log(err));
