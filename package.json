@@ -5,6 +5,10 @@
   "repository": "git@github.com:409915016/node-express-jwt-auth.git",
   "author": "mather <misaka@misaka.im>",
   "license": "MIT",
+  "scripts": {
+    "install": "npm install",
+    "serve": "nodemon app"
+  },
   "dependencies": {
     "bcrypt": "^5.0.0",
     "cookie-parser": "^1.4.5",
