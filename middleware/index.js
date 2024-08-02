@@ -7,7 +7,7 @@ const requireAuth = (req, res, next) => {
 
   // check json web token exits and is verified
   if (token) {
-    jwt.verify(token, process.env.JWT_SECRET, (err, decodeToken)=>{
+    jwt.verify(token, process.env.JWT_SECRET, async (err, decodeToken)=>{
       if(err) {
         console.log(err.message)
         res.redirect('/login')
@@ -33,10 +33,11 @@ const checkUser = (req, res, next) => {
         res.locals.user = null;
         next()
       } else {
-        console.log(decodeToken)
+        //console.log(decodeToken)
         let user = await User.findById(decodeToken.id)
         // https://www.expressjs.com.cn/4x/api.html#res.locals
         res.locals.user = user;
+        req.user = user;
         next()
       }
     })

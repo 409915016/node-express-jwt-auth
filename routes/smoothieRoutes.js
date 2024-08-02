@@ -9,10 +9,10 @@ const {
 
 const router = express.Router()
 
-const {requireAuth} = require('../middleware/index.js')
+const { checkUser} = require('../middleware/index.js')
 
 // require auth for all workout routes
-router.use(requireAuth)
+router.use(checkUser)
 
 // GET all workouts
 router.get('/', getSmoothies)
