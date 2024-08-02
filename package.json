@@ -6,13 +6,11 @@
   "author": "mather <misaka@misaka.im>",
   "license": "MIT",
   "scripts": {
-    "install": "npm install",
-    "serve": "nodemon app"
+    "serve": "nodemon --env-file=.env app"
   },
   "dependencies": {
     "bcrypt": "^5.0.0",
     "cookie-parser": "^1.4.5",
-    "dotenv": "^8.2.0",
     "ejs": "^3.1.5",
     "express": "^4.17.1",
     "jsonwebtoken": "^8.5.1",

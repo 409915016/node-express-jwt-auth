@@ -1,5 +1,3 @@
-require('dotenv').config()
-
 const express = require('express');
 const mongoose = require('mongoose');
 const authRoutes = require('./routes/authRoutes')
@@ -17,7 +15,7 @@ app.use(cookieParser())
 app.set('view engine', 'ejs');
 
 // database connection
-const dbURI = `mongodb+srv://mather:${process.env.DB_PASS}@mongodb.jolrq.azure.mongodb.net/${process.env.DB_NAME}?retryWrites=true&w=majority`;
+const dbURI = process.env.DATABASE_URL;
 mongoose.connect(dbURI, { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex:true })
   .then((result) => app.listen(3000))
   .catch((err) => console.log(err));
