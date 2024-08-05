@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 const authRoutes = require('./routes/authRoutes')
 const smoothieRoutes = require('./routes/smoothieRoutes')
 const cookieParser = require('cookie-parser')
-const { requireAuth, checkUser } = require('./middleware/')
+const { checkUser } = require('./middleware/')
 
 const app = express();
 
@@ -26,7 +26,7 @@ app.get('*', checkUser)
 app.get('/', (req, res) => res.render('home'));
 //app.get('/smoothies', requireAuth , (req, res) => res.render('smoothies'));
 app.use(authRoutes)
-app.use('/smoothies', smoothieRoutes)
+app.use('/smoothies', checkUser, smoothieRoutes)
 app.get('/addSmoothies', (req, res)=>{
   res.render('addSmoothie')
 })
