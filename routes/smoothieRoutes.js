@@ -11,22 +11,22 @@ const router = express.Router()
 
 const { checkUser} = require('../middleware/index.js')
 
-// require auth for all workout routes
+// require auth for all smoothie routes
 router.use(checkUser)
 
-// GET all workouts
+// GET all smoothie
 router.get('/', getSmoothies)
 
-//GET a single workout
+//GET a single smoothie
 router.get('/:id', getSmoothie)
 
-// POST a new workout
+// POST a new smoothie
 router.post('/', createSmoothie)
 
-// DELETE a workout
+// DELETE a smoothie
 router.delete('/:id', deleteSmoothie)
 
-// UPDATE a workout
+// UPDATE a smoothie
 router.patch('/:id', updateSmoothie)
 
 module.exports = router

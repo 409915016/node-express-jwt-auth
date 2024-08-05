@@ -1,0 +1,62 @@
+<%- include('partials/header'); -%>
+
+
+<form action="">
+    <h2>Add My Smoothie</h2>
+    <label for="name">Name</label>
+    <input type="text" name="name" required>
+    <div class="name error"></div>
+
+    <label for="made">Made</label>
+    <input type="text" name="made" required>
+    <div class="made error"></div>
+
+    <button>Add</button>
+
+</form>
+
+<script>
+  const form = document.querySelector('form')
+  const nameError = document.querySelector('.name.error')
+  const madeError = document.querySelector('.made.error')
+
+  form.addEventListener('submit', async (e) =>{
+    e.preventDefault();
+
+    // reset errors
+    nameError.textContent = ''
+    madeError.textContent = ''
+
+    // get the values
+    const name = form.name.value
+    const made = form.made.value
+
+    try{
+      const res = await fetch('/smoothies', {
+        method: 'POST',
+        body: JSON.stringify({name, made}),
+        headers: { 'Content-Type' : 'application/json'}
+      })
+
+      const data = await res.json()
+
+      if(data.message) {
+        nameError.textContent = data.errors.name
+        madeError.textContent = data.errors.made
+      }
+
+      if(data.smoothie) {
+        window.alert('add new success')
+        location.assign('/smoothies')
+      }
+
+    }catch (err) {
+      console.log(err)
+    }
+
+
+
+  })
+</script>
+
+<%- include('partials/footer'); -%>
