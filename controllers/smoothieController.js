@@ -16,11 +16,7 @@ const createSmoothie = async (req, res) =>{
 
 const getSmoothies = async (req, res) =>{
   const user_id = req.user._id
-  //const smoothies = await Smoothies.find({ user_id }).sort({ createdAt: -1 })
-  // const smoothies = [{
-  //   name: 'Tropical Twist', made: 'Peach, Pineapple, Apple juice', user_id: '1'
-  // }]
-  const smoothies = []
+  const smoothies = await Smoothie.find({ user_id }).sort({ createdAt: -1 })
   res.render('smoothies', {smoothies})
 }
 
