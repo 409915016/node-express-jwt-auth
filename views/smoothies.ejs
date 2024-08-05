@@ -13,4 +13,20 @@
   </button>
 <% } %>
 
+<script>
+  const delSmoothie = async(id) =>{
+    if(!id) return
+    try {
+      const res = await fetch('/smoothies/' + id, { method: "DELETE" })
+      const data = await res.json()
+      if(data._id) {
+        alert('delete success')
+        window.location.reload()
+      }
+    } catch (err) {
+      console.log(err)
+    }
+  }
+</script>
+
 <%- include('partials/footer'); -%>

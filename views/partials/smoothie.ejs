@@ -2,4 +2,8 @@
     <img src="/smoothie.png" alt="smoothie recipe icon">
     <h4><%= smoothie.name %></h4>
     <p><%= smoothie.made %></p>
+    <div class="menu">
+        <a href="javascript:window.location.href='/smoothie/<%= smoothie._id %>'">Edit</a>
+        <a href="javascript:delSmoothie('<%= smoothie._id %>')">Delete</a>
+    </div>
 </li>

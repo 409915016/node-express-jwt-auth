@@ -128,6 +128,19 @@ header .btn{
     text-align: center;
     padding: 0 20px 30px 20px
 }
+.recipe .menu {
+    position: absolute;
+    right: 0;
+    top: 0;
+    display: none;
+    opacity: 0;
+    padding: 10px;
+}
+.recipe:hover > .menu{
+    display: block;
+    opacity: 1;
+
+}
 .recipe img{
     width: 100px;
     margin: -30px auto 20px;
