@@ -1,6 +1,8 @@
 <%- include('partials/header'); -%>
-
 <% if (smoothies.length > 0) { %>
+  <button onclick="location.href= '/addSmoothies'">
+    Add My Smoothie
+  </button>
   <ul class="recipes">
     <% smoothies.forEach(function(smoothie){ %>
       <%- include('partials/smoothie.ejs', {smoothie: smoothie}); %>

@@ -22,4 +22,8 @@ pnpm-debug.log*
 *.sln
 *.sw?
 
+# Uploader Resource
+nodeServer/tmp/
+nodeServer/uploads/
+
 © 2020 GitHub, Inc.
