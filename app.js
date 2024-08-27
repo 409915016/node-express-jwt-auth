@@ -1,3 +1,5 @@
+const { Server } = require('@tus/server')
+const { FileStore } = require('@tus/file-store')
 const express = require('express');
 const mongoose = require('mongoose');
 const authRoutes = require('./routes/authRoutes')
@@ -5,8 +7,16 @@ const smoothieRoutes = require('./routes/smoothieRoutes')
 const uploadRoutes = require('./routes/uploadRoutes')
 const cookieParser = require('cookie-parser')
 const { checkUser } = require('./middleware/')
+const path = require("path");
 
+const uploadApp = express()
 const app = express();
+
+// create tus server
+const server = new Server({
+  path: '/uploads',
+  datastore: new FileStore({directory: path.resolve(process.cwd(), 'files')}),
+})
 
 // middleware
 app.use(express.static('public'));
@@ -18,10 +28,10 @@ app.set('view engine', 'ejs');
 
 // database connection
 const dbURI = process.env.DATABASE_URL;
-mongoose.connect(dbURI, { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex:true })
-  .then((result) => app.listen(3000))
-  .catch((err) => console.log(err));
 
+
+//express upload app
+uploadApp.all('*', server.handle.bind(server))
 // routes
 app.get('*', checkUser)
 app.get('/', (req, res) => res.render('home'));
@@ -33,7 +43,11 @@ app.get('/addSmoothies', (req, res)=>{
 })
 
 app.use('/uploader', uploadRoutes)
+app.use('/uploads', uploadApp)
 
+mongoose.connect(dbURI, { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex:true })
+  .then((result) => app.listen(3000))
+  .catch((err) => console.log(err));
 //cookies
 
 // app.get('/set-cookies', (req, res)=>{
